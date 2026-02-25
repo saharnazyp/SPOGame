@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>مینی‌گیم SPO</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <img class="logo" src="logo.png" alt="لوگوی سازمان">
+        <div class="titles">
+          <h1>مینی‌گیم SPO</h1>
+          <p>دوز + سنگ‌کاغذ‌قیچی | AI</p>
+        </div>
+      </div>
+
+      <nav class="tabs">
+        <button class="tab active" id="tabTtt">دوز</button>
+        <button class="tab" id="tabRps">سنگ‌کاغذ‌قیچی</button>
+      </nav>
+    </header>
+
+    <!-- ================== TIC TAC TOE ================== -->
+    <main class="panel" id="tttPanel">
+      <div class="row">
+        <div id="tttStatus" class="status">نوبت شما: X</div>
+        <div class="controls">
+          <label class="select">
+            درجه سختی:
+            <select id="tttDifficulty">
+              <option value="easy">آسان</option>
+              <option value="normal" selected>متوسط</option>
+              <option value="hard">سخت</option>
+            </select>
+          </label>
+          <button id="tttResetBtn">شروع مجدد</button>
+        </div>
+      </div>
+
+      <div id="tttBoard" class="board"></div>
+
+      <div class="legend">
+        <span><b>شما:</b> X</span>
+        <span><b>AI:</b> <img class="miniLogo" src="logo.png" alt="لوگو"></span>
+      </div>
+    </main>
+
+    <!-- ================== RPS ================== -->
+    <main class="panel hidden" id="rpsPanel">
+      <div class="row">
+        <div class="status">سنگ ✊ کاغذ ✋ قیچی ✌️</div>
+        <button id="rpsResetBtn">ریست</button>
+      </div>
+
+      <div class="scores">
+        <div>شما: <b id="rpsYouScore">0</b></div>
+        <div>AI: <b id="rpsAiScore">0</b></div>
+        <div>مساوی: <b id="rpsDrawScore">0</b></div>
+      </div>
+
+      <div class="choices">
+        <button class="pick" data-move="rock">✊ سنگ</button>
+        <button class="pick" data-move="paper">✋ کاغذ</button>
+        <button class="pick" data-move="scissors">✌️ قیچی</button>
+      </div>
+
+      <div class="result">
+        <div>انتخاب شما: <b id="rpsYouPick">-</b></div>
+        <div>انتخاب AI: <b id="rpsAiPick">-</b></div>
+        <div class="msg" id="rpsMsg">یکی را انتخاب کن</div>
+      </div>
+
+      <div class="ai-box">
+        <h2>AI چی کار می‌کند؟</h2>
+        <p>الگوی بازی شما را یاد می‌گیرد و حرکت بعدی شما را حدس می‌زند.</p>
+        <div class="small" id="rpsDebug">الگو: هنوز داده ندارم.</div>
+      </div>
+    </main>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
