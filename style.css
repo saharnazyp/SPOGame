@@ -1,0 +1,389 @@
+*{box-sizing:border-box}
+:root{
+  /* Theme: sharper + brighter */
+  --bg0:#0b1020;
+  --bg1:#0e1730;
+
+  --text:#eef2ff;
+  --muted: rgba(238,242,255,.80);
+
+  /* Glass surfaces */
+  --card: rgba(255,255,255,.10);
+  --card2: rgba(255,255,255,.06);
+  --border: rgba(255,255,255,.16);
+
+  /* Accents */
+  --accent:#7c3aed;   /* purple */
+  --accent2:#38bdf8;  /* sky */
+  --accent3:#22c55e;  /* green */
+
+  --shadow: 0 18px 60px rgba(0,0,0,.45);
+  --radius: 18px;
+
+  /* Responsive board sizing */
+  --cell: clamp(86px, 24vw, 122px);
+  --gap: clamp(8px, 2.2vw, 12px);
+}
+
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
+  color:var(--text);
+
+  background:
+    radial-gradient(900px 450px at 15% 15%, rgba(124,58,237,.35), transparent 55%),
+    radial-gradient(900px 450px at 85% 25%, rgba(56,189,248,.28), transparent 55%),
+    radial-gradient(900px 450px at 60% 90%, rgba(34,197,94,.18), transparent 55%),
+    linear-gradient(180deg, var(--bg1), var(--bg0));
+}
+
+.app{
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: clamp(12px, 3vw, 18px);
+}
+
+a{color:inherit}
+
+/* ---------- Topbar ---------- */
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+
+  background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.06));
+  border:1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(14px);
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-width: min(520px, 100%);
+}
+
+.logo{
+  width:56px;height:56px;
+  border-radius:14px;
+  object-fit:contain;
+
+  background: radial-gradient(60px 60px at 30% 30%, rgba(255,255,255,.12), rgba(255,255,255,.06));
+  border:1px solid rgba(255,255,255,.18);
+  padding:6px;
+  flex: 0 0 auto;
+
+  box-shadow:
+    0 14px 34px rgba(0,0,0,.40),
+    0 0 22px rgba(56,189,248,.10);
+}
+
+.titles h1{margin:0;font-size:18px; letter-spacing:.2px}
+.titles p{margin:4px 0 0;opacity:.88;font-size:12px;color:var(--muted)}
+
+/* ---------- Tabs ---------- */
+.tabs{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  width:auto;
+}
+
+.tab{
+  color:var(--text);
+  border-radius:12px;
+  padding:10px 12px;
+  cursor:pointer;
+
+  border:1px solid rgba(255,255,255,.18);
+  background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
+  box-shadow: 0 10px 25px rgba(0,0,0,.25);
+
+  transition: transform .12s ease, filter .12s ease, box-shadow .12s ease, border-color .12s ease;
+}
+
+.tab:hover{
+  transform: translateY(-1px);
+  filter: brightness(1.08);
+}
+
+.tab.active{
+  border-color: rgba(124,58,237,.55);
+  box-shadow:
+    0 0 0 3px rgba(124,58,237,.18),
+    0 18px 45px rgba(124,58,237,.16);
+}
+
+/* ---------- Panels ---------- */
+.panel{
+  margin-top:16px;
+
+  background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.06));
+  border:1px solid var(--border);
+  border-radius: var(--radius);
+  padding: clamp(12px, 3vw, 16px);
+
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(16px);
+
+  position: relative;
+  overflow: hidden;
+
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+
+/* subtle ambient glow */
+.panel .glowLayer{display:none} /* (reserved if you add later) */
+
+.hidden{display:none}
+
+.row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+  position: relative;
+  z-index: 1;
+}
+
+.status{
+  font-weight:800;
+  padding:10px 12px;
+  border-radius:12px;
+
+  background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
+  border:1px solid rgba(255,255,255,.16);
+
+  flex: 1 1 240px;
+  min-width: min(320px, 100%);
+
+  box-shadow: 0 10px 26px rgba(0,0,0,.25);
+}
+
+.controls{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+  position: relative;
+  z-index: 1;
+}
+
+.select{
+  font-size:12px;
+  opacity:.92;
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+
+select, button{
+  color:var(--text);
+  border-radius:12px;
+  padding:10px 12px;
+  cursor:pointer;
+
+  border:1px solid rgba(255,255,255,.18);
+  background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
+  box-shadow: 0 10px 25px rgba(0,0,0,.25);
+
+  transition: transform .12s ease, filter .12s ease, box-shadow .12s ease;
+}
+
+button:hover, select:hover{
+  transform: translateY(-1px);
+  filter: brightness(1.08);
+}
+
+button:active{
+  transform: translateY(0px) scale(.99);
+}
+
+/* ---------- TIC TAC TOE ---------- */
+.board{
+  display:grid;
+  grid-template-columns:repeat(3, var(--cell));
+  gap: var(--gap);
+  margin-top:14px;
+  justify-content:center;
+  position: relative;
+  z-index: 1;
+}
+
+.cell{
+  width:var(--cell);
+  height:var(--cell);
+  border-radius:var(--radius);
+
+  background: radial-gradient(140px 140px at 30% 30%, rgba(255,255,255,.12), rgba(255,255,255,.05));
+  border:1px solid rgba(255,255,255,.16);
+
+  display:grid;
+  place-items:center;
+  font-size: clamp(38px, 8vw, 52px);
+  cursor:pointer;
+  user-select:none;
+  touch-action: manipulation;
+
+  box-shadow: 0 16px 34px rgba(0,0,0,.35);
+  transition: transform .12s ease, filter .12s ease, box-shadow .12s ease;
+}
+
+.cell:hover{
+  transform: translateY(-2px);
+  box-shadow:
+    0 22px 55px rgba(0,0,0,.45),
+    0 0 0 3px rgba(56,189,248,.10);
+  filter: brightness(1.08);
+}
+
+.cell.disabled{cursor:not-allowed;opacity:.92;transform:none}
+
+.oLogo{
+  width: clamp(38px, 10vw, 56px);
+  height: clamp(38px, 10vw, 56px);
+  object-fit:contain;
+  border-radius:12px;
+
+  background: radial-gradient(60px 60px at 30% 30%, rgba(255,255,255,.12), rgba(255,255,255,.06));
+  border:1px solid rgba(255,255,255,.20);
+  padding:6px;
+
+  box-shadow:
+    0 16px 38px rgba(0,0,0,.40),
+    0 0 26px rgba(56,189,248,.16);
+}
+
+.legend{
+  margin-top:12px;
+  display:flex;
+  gap:14px;
+  opacity:.92;
+  align-items:center;
+  justify-content:center;
+  flex-wrap:wrap;
+  position: relative;
+  z-index: 1;
+}
+
+.miniLogo{
+  width:20px;height:20px;
+  object-fit:contain;
+  vertical-align:middle;
+}
+
+/* ---------- RPS ---------- */
+.scores{
+  display:flex;
+  gap:16px;
+  opacity:.92;
+  margin:12px 0;
+  flex-wrap:wrap;
+  justify-content:center;
+  position: relative;
+  z-index: 1;
+}
+
+.choices{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:10px 0 14px;
+  justify-content:center;
+  position: relative;
+  z-index: 1;
+}
+
+.pick{
+  font-size:16px;
+  padding:12px 14px;
+  min-width: 150px;
+  border-color: rgba(56,189,248,.28);
+}
+
+.pick:hover{
+  box-shadow:
+    0 0 0 3px rgba(56,189,248,.12),
+    0 18px 45px rgba(56,189,248,.10);
+}
+
+.result{
+  display:grid;
+  gap:8px;
+  margin-top:6px;
+  max-width: 520px;
+  margin-left:auto;
+  margin-right:auto;
+  position: relative;
+  z-index: 1;
+}
+
+.msg{
+  margin-top:6px;
+  padding:10px 12px;
+  border-radius:12px;
+
+  background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
+  border:1px solid rgba(255,255,255,.16);
+  font-weight:800;
+
+  box-shadow: 0 10px 26px rgba(0,0,0,.25);
+}
+
+.ai-box{
+  margin-top:14px;
+  padding:12px;
+  border-radius:14px;
+
+  background: linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.05));
+  border:1px dashed rgba(255,255,255,.18);
+
+  max-width: 720px;
+  margin-left:auto;
+  margin-right:auto;
+
+  box-shadow: 0 14px 40px rgba(0,0,0,.30);
+  position: relative;
+  z-index: 1;
+}
+
+.ai-box h2{margin:0 0 8px;font-size:14px}
+.small{opacity:.88;font-size:12px;color:var(--muted)}
+
+/* ---------- 3D Tilt Support ---------- */
+.tilt{
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  will-change: transform;
+}
+
+/* highlight follows mouse (set via --mx/--my in JS) */
+.tilt::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius: var(--radius);
+  pointer-events:none;
+  background: radial-gradient(
+    500px 220px at var(--mx,50%) var(--my,30%),
+    rgba(255,255,255,.18),
+    transparent 60%
+  );
+  opacity: .9;
+}
+
+/* ---------- Mobile tweaks ---------- */
+@media (max-width: 520px){
+  .tabs{width:100%}
+  .tab{flex:1 1 auto; text-align:center}
+  .controls{width:100%; justify-content:space-between}
+  .pick{min-width: 46%; flex: 1 1 46%;}
+}
